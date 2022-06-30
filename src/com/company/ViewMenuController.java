@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ViewMenuController {
 
@@ -39,7 +40,7 @@ public class ViewMenuController {
             oldStage.hide();
             Parent root;
             try {
-                root = FXMLLoader.load(getClass().getResource("mainmenu.fxml"));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainmenu.fxml")));
                 Stage stage = new Stage();
                 stage.setTitle("Data view");
                 stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
@@ -74,21 +75,20 @@ public class ViewMenuController {
         String sql = "select * from projects";
         try {
 
+            assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet word = preparedStatement.executeQuery();
-            ArrayList<String> list2 = new ArrayList<String>();
-            String arrId = null;
-            String arrName = null;
-            String arrSurname = null;
-            String arrEducation = null;
-            String arrDepartment = null;
-            String arrOperation = null;
+            ArrayList<String> list2 = new ArrayList<>();
+            String arrName;
+            String arrSurname;
+            String arrEducation;
+            String arrDepartment;
+            String arrOperation;
 
 
             while (word.next()) {
-                String em = word.getString("convrprojid");
-                arrId = em.replace("\n", ",");
+
 
                 String em1 = word.getString("projname");
                 arrName = em1.replace("\n", ",");
@@ -129,15 +129,16 @@ public class ViewMenuController {
         String sql = "select * from emps";
         try {
 
+            assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet word = preparedStatement.executeQuery();
-            ArrayList<String> list = new ArrayList<String>();
-            String arrName = null;
-            String arrSurname = null;
-            String arrEducation = null;
-            String arrDepartment = null;
-            String arrOperation = null;
+            ArrayList<String> list = new ArrayList<>();
+            String arrName;
+            String arrSurname;
+            String arrEducation;
+            String arrDepartment;
+            String arrOperation;
 
 
             while (word.next()) {
