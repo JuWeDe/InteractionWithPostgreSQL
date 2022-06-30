@@ -7,21 +7,19 @@ import java.sql.SQLException;
 
 
 public class DBHandler {
+    Config config = new Config();
+    Connection connection;
 
-
-    public static int id = 1;
-
-
+    {
+        try {
+            connection = DriverManager.getConnection(config.getDB_URL(), config.getDB_USERNAME(), config.getDB_PASSWORD());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void InsertEmployer (EmployesInfo employesInfo) throws SQLException {
-
-
-        //System.out.println(querry);
-        id++;
-        //PreparedStatement ps = connection.prepareStatement(querry);
-        //ps.executeUpdate();
-
 
 
     }

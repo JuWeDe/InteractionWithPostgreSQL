@@ -126,14 +126,13 @@ public class ViewMenuController {
             e.printStackTrace();
         }
 
-        String sql = "select * from employees";
+        String sql = "select * from emps";
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet word = preparedStatement.executeQuery();
             ArrayList<String> list = new ArrayList<String>();
-            String arrId = null;
             String arrName = null;
             String arrSurname = null;
             String arrEducation = null;
@@ -142,8 +141,6 @@ public class ViewMenuController {
 
 
             while (word.next()) {
-                String em = word.getString("empid");
-                arrId = em.replace("\n", ",");
 
                 String em1 = word.getString("name");
                 arrName = em1.replace("\n", ",");

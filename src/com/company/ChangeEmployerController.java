@@ -68,7 +68,7 @@ public class ChangeEmployerController {
         });
         transferButton.setOnAction(event-> {
 
-            String sql = "UPDATE employees SET department = ? WHERE empid = ?;";
+            String sql = "UPDATE emps SET department = ? WHERE emid = ?;";
             String dep = depToChangeTxtField.getText().trim();
             String id = String.valueOf(1);
 
@@ -96,7 +96,7 @@ public class ChangeEmployerController {
             e.printStackTrace();
         }
 
-        String sql = "select name, surname from employees";
+        String sql = "select name, surname from emps";
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

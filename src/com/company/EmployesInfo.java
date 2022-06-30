@@ -1,15 +1,14 @@
 package com.company;
 
 public class EmployesInfo {
-    private String operation;
-    private int id = 1;
+
     private String name;
     private String surname;
     private String education;
     private String department;
+    private String operation;
 
-
-    public EmployesInfo(int id, String name, String surname, String education, String department, String operation) {
+    public EmployesInfo(String name, String surname, String education, String department, String operation) {
 
         this.name = name;
         this.surname = surname;
@@ -18,13 +17,7 @@ public class EmployesInfo {
         this.operation = operation;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

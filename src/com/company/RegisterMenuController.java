@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class registerMenuController {
+public class RegisterMenuController {
 
     @FXML
     private TextField nameTxtField;
@@ -49,34 +49,33 @@ public class registerMenuController {
 
 
 
-
     @FXML
     void initialize () throws Exception {
         Config config = new Config();
         Connection connection = DriverManager.getConnection(config.getDB_URL(), config.getDB_USERNAME(), config.getDB_PASSWORD());
         signupButton.setOnAction(event -> {
-            String name = nameTxtField.getText().trim();
-            String surname = surnameTxtField.getText().trim();
-            String education = educationTxtField.getText().trim();
-            String department = departmentTxtField.getText().trim();
-
-
-            int idEmp = Integer.parseInt(numberTxtField.getText().trim());
-            String operation = operationTxtField.getText().trim();
-            EmployesInfo employesInfo = new EmployesInfo(idEmp, name, surname, education, department, operation);
+            String nameToInsert = nameTxtField.getText().trim();
+            String surnameToInsert = surnameTxtField.getText().trim();
+            String educationToInsert = educationTxtField.getText().trim();
+            String departmentToInsert = departmentTxtField.getText().trim();
+            String operationToInsert = operationTxtField.getText().trim();
+            EmployesInfo employesInfo = new EmployesInfo(nameToInsert, surnameToInsert,educationToInsert, departmentToInsert,operationToInsert);
 
 
 
-            String sql = "Insert into employees VALUES (?, ?, ?, ?, ?, ?);";
+
+
+            String sql = "Insert into emps (name, surname, education, department, operation) VALUES (?, ?, ?, ?, ?);";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, employesInfo.getId());
-                preparedStatement.setString(2, employesInfo.getName());
-                preparedStatement.setString(3, employesInfo.getSurname());
-                preparedStatement.setString(4, employesInfo.getEducation());
-                preparedStatement.setString(5, employesInfo.getDepartment());
-                preparedStatement.setString(6, employesInfo.getOperation());
+
+                preparedStatement.setString(1, employesInfo.getName());
+                preparedStatement.setString(2, employesInfo.getSurname());
+                preparedStatement.setString(3, employesInfo.getEducation());
+                preparedStatement.setString(4, departmentToInsert);
+                preparedStatement.setString(5, operationToInsert);
                 preparedStatement.executeUpdate();
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
